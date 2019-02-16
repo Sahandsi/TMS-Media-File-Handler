@@ -73,6 +73,15 @@ fileRoutes.route('/update/:id').post(function(req, res) {
             res.status(404).send('data is not found');
         else
             file.file_description = req.body.file_description;
+            file.file_size = req.body.file_size;
+            file.file_duration = req.body.file_duration;
+            file.file_artist = req.body.file_artist;
+            file.file_bitrate = req.body.file_bitrate;
+            file.file_codec = req.body.file_codec;
+            file.file_audioChannels = req.body.file_audioChannels;
+            file.file_dimensions = req.body.file_dimensions;
+            file.file_colorProfile = req.body.file_colorProfile;
+            file.file_extension = req.body.file_extension;
             file.file_employeeResponsible = req.body.file_employeeResponsible;
             file.file_editActive = req.body.file_editActive;
             file.file_completed = req.body.file_completed;

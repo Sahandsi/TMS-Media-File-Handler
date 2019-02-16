@@ -5,6 +5,10 @@ import axios from 'axios';
 const File = props => (
     <tr>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_description}</td>
+        <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_extension}</td>
+        <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_size}</td>
+        <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_duration}</td>
+        <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_dimensions}</td>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_employeeResponsible}</td>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_editActive}</td>
         <td>
@@ -67,6 +71,10 @@ export default class FilesList extends Component {
                     <thead>
                         <tr>
                             <th>File Name</th>
+                            <th>File Extension</th>
+                            <th>File Size (In MB/s)</th>
+                            <th>File Duration (In Minutes)</th>
+                            <th>File Dimensions (In px)</th>
                             <th>Employee Responsible</th>
                             <th>Edit Active?</th>
                             <th>Actions</th>
