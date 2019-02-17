@@ -70,6 +70,7 @@ export default class CreateFile extends Component {
 
     onChangeFileTag(e) {
         this.setState({
+
             file_tag: e.target.value
         });
     }
@@ -221,6 +222,7 @@ export default class CreateFile extends Component {
                                        className="form-control"
                                        value={this.state.file_description}
                                        onChange={this.onChangeFileDescription}
+
                                 />
                             </div>
                             <div className="form-group">
@@ -274,10 +276,22 @@ export default class CreateFile extends Component {
                             <div className="form-group">
                                 <label>File Tag: </label>
                                 <input type="text"
+                                       name="tag"
                                        className="form-control"
                                        value={this.state.file_tag}
                                        onChange={this.onChangeFileTag}
                                 />
+
+
+
+
+                                console.log("axios response:", result)
+
+
+
+
+
+
                             </div>
                             <div className="form-group">
                                 <label>In Edit:</label>

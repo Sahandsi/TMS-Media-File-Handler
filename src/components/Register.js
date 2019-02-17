@@ -94,9 +94,9 @@ class Register extends Component {
             name="lastname"
             id="lastname"
           />
-          {this.state.errors &&
-            this.state.errors.lastname && (
-              <p>{this.state.errors.lastname.msg}</p>
+          {/*{this.state.errors &&*/}
+            {/*this.state.errors.lastname && (*/}
+              {/*<p>{this.state.errors.lastname.msg}</p>*/}
             )}
           <br />
           <MDBInput

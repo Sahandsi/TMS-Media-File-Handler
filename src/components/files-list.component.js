@@ -32,7 +32,7 @@ export default class FilesList extends Component {
     constructor(props) {
         super(props);
         this.state = { files: [], isloggedin: true };
-
+        // this.getPosts();
         axios
             .get("http://localhost:4000/api/isloggedin")
             .then(res => {
@@ -40,6 +40,9 @@ export default class FilesList extends Component {
                     return this.setState({ isloggedin: false });
                 }
             });
+        // this.changeHandler = this.changeHandler.bind(this);
+        // this.submitHandler = this.submitHandler.bind(this);
+        // this.getPosts = this.getPosts.bind(this);
     }
 
 

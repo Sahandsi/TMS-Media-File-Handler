@@ -10,17 +10,6 @@ module.exports = function(app) {
 
     app.use(bodyParser.json());
 
-    // app.use(
-    //     cors({
-    //         origin: [
-    //             "http://localhost:3000"
-    //         ],
-    //         methods: ["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
-    //         credentials: true //allow setting of cookies
-    //     })
-    // );
-
-
     fileRoutes.route('/').get(function (req, res) {
         File.find(function (err, files) {
             if (err) {
@@ -38,7 +27,23 @@ module.exports = function(app) {
         });
     });
 
+
     fileRoutes.route('/add').post(function (req, res) {
+
+       console.log(req.body.file_description);
+
+
+       if (req.body.file_description === ""){
+
+           console.log("its empty!");
+           var result = {"data" :"hello everybody !"}
+           res.status(200).json({'description': 'description is needed'});
+           return res.send(result);
+
+
+       }
+
+
         let file = new File(req.body);
         file.save()
             .then(file => {
