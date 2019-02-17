@@ -19,6 +19,7 @@ export default class CreateFile extends Component {
         this.onChangeFileArtist = this.onChangeFileArtist.bind(this);
         this.onChangeFileBitrate = this.onChangeFileBitrate.bind(this);
         this.onChangeFileCodec = this.onChangeFileCodec.bind(this);
+        this.onChangeFileTag = this.onChangeFileTag.bind(this);
         this.onChangeFileChannels = this.onChangeFileChannels.bind(this);
         this.onChangeFileDimensions = this.onChangeFileDimensions.bind(this);
         this.onChangeFileProfile = this.onChangeFileProfile.bind(this);
@@ -41,6 +42,7 @@ export default class CreateFile extends Component {
             file_dimensions: '',
             file_colorProfile: '',
             file_extension: '',
+            file_tag: '',
             key: 'audio',
             isloggedin: true
         };
@@ -63,6 +65,12 @@ export default class CreateFile extends Component {
     onChangeFileDescription(e) {
         this.setState({
             file_description: e.target.value
+        });
+    }
+
+    onChangeFileTag(e) {
+        this.setState({
+            file_tag: e.target.value
         });
     }
 
@@ -140,15 +148,16 @@ export default class CreateFile extends Component {
 
         console.log(`Form submitted:`);
         console.log(`File Description: ${this.state.file_description}`);
-        console.log(`File Description: ${this.state.file_size}`);
-        console.log(`File Description: ${this.state.file_duration}`);
-        console.log(`File Description: ${this.state.file_artist}`);
-        console.log(`File Description: ${this.state.file_bitrate}`);
-        console.log(`File Description: ${this.state.file_codec}`);
-        console.log(`File Description: ${this.state.file_audioChannels}`);
-        console.log(`File Description: ${this.state.file_dimensions}`);
-        console.log(`File Description: ${this.state.file_colorProfile}`);
-        console.log(`File Description: ${this.state.file_extension}`);
+        console.log(`File Size: ${this.state.file_size}`);
+        console.log(`File Duration: ${this.state.file_duration}`);
+        console.log(`File Artist: ${this.state.file_artist}`);
+        console.log(`File Tag: ${this.state.file_tag}`);
+        console.log(`File Bitrate: ${this.state.file_bitrate}`);
+        console.log(`File Codec: ${this.state.file_codec}`);
+        console.log(`File Audio Channels: ${this.state.file_audioChannels}`);
+        console.log(`File Dimensions: ${this.state.file_dimensions}`);
+        console.log(`File Color Profile: ${this.state.file_colorProfile}`);
+        console.log(`File Extension: ${this.state.file_extension}`);
         console.log(`Employee Responsible: ${this.state.file_employeeResponsible}`);
         console.log(`Edit Active: ${this.state.file_editActive}`);
         console.log(`Completed: ${this.state.file_completed}`);
@@ -160,6 +169,7 @@ export default class CreateFile extends Component {
             file_artist: this.state.file_artist,
             file_bitrate: this.state.file_bitrate,
             file_codec: this.state.file_codec,
+            file_tag: this.state.file_tag,
             file_audioChannels: this.state.file_audioChannels,
             file_dimensions: this.state.file_dimensions,
             file_colorProfile: this.state.file_colorProfile,
@@ -176,6 +186,7 @@ export default class CreateFile extends Component {
             file_description: '',
             file_size: '',
             file_duration: '',
+            file_tag: '',
             file_artist: '',
             file_bitrate: '',
             file_codec: '',
@@ -258,6 +269,14 @@ export default class CreateFile extends Component {
                                        className="form-control"
                                        value={this.state.file_employeeResponsible}
                                        onChange={this.onChangeEmployeeResponsible}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>File Tag: </label>
+                                <input type="text"
+                                       className="form-control"
+                                       value={this.state.file_tag}
+                                       onChange={this.onChangeFileTag}
                                 />
                             </div>
                             <div className="form-group">
@@ -352,6 +371,14 @@ export default class CreateFile extends Component {
                                 />
                             </div>
                             <div className="form-group">
+                                <label>File Tag: </label>
+                                <input type="text"
+                                       className="form-control"
+                                       value={this.state.file_tag}
+                                       onChange={this.onChangeFileTag}
+                                />
+                            </div>
+                            <div className="form-group">
                                 <label>In Edit:</label>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input"
@@ -435,6 +462,14 @@ export default class CreateFile extends Component {
                                 />
                             </div>
                             <div className="form-group">
+                                <label>File Tag: </label>
+                                <input type="text"
+                                       className="form-control"
+                                       value={this.state.file_tag}
+                                       onChange={this.onChangeFileTag}
+                                />
+                            </div>
+                            <div className="form-group">
                                 <label>In Edit:</label>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input"
@@ -500,6 +535,14 @@ export default class CreateFile extends Component {
                                        className="form-control"
                                        value={this.state.file_employeeResponsible}
                                        onChange={this.onChangeEmployeeResponsible}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>File Tag: </label>
+                                <input type="text"
+                                       className="form-control"
+                                       value={this.state.file_tag}
+                                       onChange={this.onChangeFileTag}
                                 />
                             </div>
                             <div className="form-group">

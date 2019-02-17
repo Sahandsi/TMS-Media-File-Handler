@@ -68,8 +68,8 @@ import logo from "./logo.png";
 import axios from "axios";
 
 import CreateFile from "./components/upload-file.component";
-import EditTodo from "./components/file-edit.component";
-import TodosList from "./components/files-list.component";
+import EditFile from "./components/file-edit.component";
+import FilesList from "./components/files-list.component";
 import LoginRegister from "./components/loginregister";
 import Main from "./components/Mainpage";
 
@@ -82,8 +82,7 @@ import 'mdbreact/dist/css/mdb.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import React, { Component } from "react";
 import {
-  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBBtn
+  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse
 } from "mdbreact";
 
 class App extends Component {
@@ -117,7 +116,7 @@ class App extends Component {
                 </MDBNavItem>
 
                 <MDBNavItem >
-                  <MDBNavLink to="/todolist">Meta Files</MDBNavLink>
+                  <MDBNavLink to="/filelist">Meta Files</MDBNavLink>
                 </MDBNavItem>
 
                 <MDBNavItem>
@@ -142,8 +141,8 @@ class App extends Component {
           </MDBNavbar>
 
           <Route exact path="/" component={LoginRegister} />
-          <Route path="/todolist" exact component={TodosList} />
-          <Route path="/edit/:id" component={EditTodo} />
+          <Route path="/filelist" exact component={FilesList} />
+          <Route path="/edit/:id" component={EditFile} />
           <Route path="/create" component={CreateFile} />
           <Route exact path="/mainpage" component={Main} />
 

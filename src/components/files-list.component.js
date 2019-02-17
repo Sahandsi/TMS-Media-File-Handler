@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 const File = props => (
     <tr>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_description}</td>
@@ -9,20 +10,29 @@ const File = props => (
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_size}</td>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_duration}</td>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_dimensions}</td>
+        <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_tag}</td>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_employeeResponsible}</td>
         <td className={props.file.file_completed ? 'completed' : ''}>{props.file.file_editActive}</td>
         <td>
+
+
             <Link to={"/edit/" + props.file._id}>Edit</Link>
+            <Link to={"/delete/" + props.file._id}> Delete</Link>
+
         </td>
     </tr>
 )
+
+
+
+
 
 export default class FilesList extends Component {
 
     constructor(props) {
         super(props);
         this.state = { files: [], isloggedin: true };
-        // this.getPosts();
+
         axios
             .get("http://localhost:4000/api/isloggedin")
             .then(res => {
@@ -30,9 +40,6 @@ export default class FilesList extends Component {
                     return this.setState({ isloggedin: false });
                 }
             });
-        // this.changeHandler = this.changeHandler.bind(this);
-        // this.submitHandler = this.submitHandler.bind(this);
-        // this.getPosts = this.getPosts.bind(this);
     }
 
 
@@ -75,6 +82,7 @@ export default class FilesList extends Component {
                             <th>File Size (In MB/s)</th>
                             <th>File Duration (In Minutes)</th>
                             <th>File Dimensions (In px)</th>
+                            <th>File Tag</th>
                             <th>Employee Responsible</th>
                             <th>Edit Active?</th>
                             <th>Actions</th>

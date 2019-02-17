@@ -7,24 +7,35 @@ let Files = new Schema({
     },
     file_size: {
         type: String
-    }, file_duration: {
+    },
+    file_duration: {
         type: String
-    }, file_artist: {
+    },
+    file_artist: {
         type: String
-    }, file_bitrate: {
+    },
+    file_bitrate: {
         type: String
-    }, file_codec: {
+    },
+    file_codec: {
         type: String
-    }, file_audioChannels: {
+    },
+    file_audioChannels: {
         type: String
-    }, file_dimensions: {
+    },
+    file_dimensions: {
         type: String
-    }, file_colorProfile: {
+    },
+    file_colorProfile: {
         type: String
-    }, file_extension: {
+    },
+    file_extension: {
         type: String
     },
     file_employeeResponsible: {
+        type: String
+    },
+    file_tag: {
         type: String
     },
     file_editActive: {
@@ -32,6 +43,16 @@ let Files = new Schema({
     },
     file_completed: {
         type: Boolean
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 });
 
