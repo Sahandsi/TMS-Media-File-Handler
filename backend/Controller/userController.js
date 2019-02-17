@@ -168,4 +168,15 @@ module.exports = function(app) {
     req.session.destroy();
     res.send({ message: "Logged out!" });
   });
+
+  app.get("/api/users/:id", showUser);
+
+  function showUser(req, res){
+
+      let id = req.params.id;
+      User.findById(id, function(err, file) {
+        res.json(file);
+      });
+
+  }
 };

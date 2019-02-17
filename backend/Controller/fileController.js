@@ -1,11 +1,39 @@
 const express = require('express');
-
+var { check, validationResult } = require("express-validator/check");
 const bodyParser = require('body-parser');
 
 const fileRoutes = express.Router();
 const File = require("../models/fileHandler");
 
 module.exports = function(app) {
+
+
+
+
+    const fileValidation = [
+        check("file_description")
+            .not()
+            .isEmpty()
+            .withMessage("Description required"),
+        check("file_size")
+            .not()
+            .isEmpty()
+            .withMessage("File size required"),
+        check("file_extension")
+
+            .isMimeType()
+            .withMessage("invalid extension")
+            .not()
+            .isEmpty()
+            .withMessage("Allowed File extension required"),
+        check("file_tag")
+            .not()
+            .isEmpty()
+            .withMessage("File size required"),
+
+
+    ];
+
 
 
     app.use(bodyParser.json());
@@ -28,30 +56,25 @@ module.exports = function(app) {
     });
 
 
-    fileRoutes.route('/add').post(function (req, res) {
+    fileRoutes.route('/add').post(fileValidation, function (req, res) {
 
-       console.log(req.body.file_description);
+        var errors = validationResult(req);
 
+        if (!errors.isEmpty()) {
+            return res.send({ errors: errors.mapped() });
+        }else{
 
-       if (req.body.file_description === ""){
-
-           console.log("its empty!");
-           var result = {"data" :"hello everybody !"}
-           res.status(200).json({'description': 'description is needed'});
-           return res.send(result);
+            console.log("its empty!");
 
 
-       }
+            let file = new File(req.body);
+            file.save()
+                .then(file => {
+                    res.status(200).json({'file': 'file added successfully'});
+                })
+                .catch(err => res.send(err));
+        }
 
-
-        let file = new File(req.body);
-        file.save()
-            .then(file => {
-                res.status(200).json({'file': 'file added successfully'});
-            })
-            .catch(err => {
-                res.status(400).send('adding new file failed');
-            });
     });
 
 

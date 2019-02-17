@@ -174,14 +174,23 @@ export default class CreateFile extends Component {
             file_audioChannels: this.state.file_audioChannels,
             file_dimensions: this.state.file_dimensions,
             file_colorProfile: this.state.file_colorProfile,
-            file_extension: this.state.file_extension,
+            file_extension:  this.state.file_extension,
             file_employeeResponsible: this.state.file_employeeResponsible,
             file_editActive: this.state.file_editActive,
             file_completed: this.state.file_completed
         }
 
         axios.post('http://localhost:4000/files/add', newFile)
-            .then(res => console.log(res.data));
+            .then(result => {
+                if (result.data.errors) {
+                    return this.setState(result.data);
+                }
+                return this.setState({
+                    userdata: result.data,
+                    errors: null,
+                    success: true
+                });
+            });
 
         this.setState({
             file_description: '',
@@ -224,14 +233,18 @@ export default class CreateFile extends Component {
                                        onChange={this.onChangeFileDescription}
 
                                 />
+                                {this.state.errors &&
+                                this.state.errors.file_description && <p>{this.state.errors.file_description.msg}</p>}
                             </div>
                             <div className="form-group">
                                 <label>File Extension: </label>
                                 <input type="text"
                                        className="form-control"
-                                       value={this.state.file_extension}
+                                       value={"audio/" + this.state.file_extension}
                                        onChange={this.onChangeFileExtension}
                                 />
+                                {this.state.errors &&
+                                this.state.errors.file_extension && <p>{this.state.errors.file_extension.msg}</p>}
                             </div>
                             <div className="form-group">
                                 <label>File Size: </label>
@@ -281,14 +294,6 @@ export default class CreateFile extends Component {
                                        value={this.state.file_tag}
                                        onChange={this.onChangeFileTag}
                                 />
-
-
-
-
-                                console.log("axios response:", result)
-
-
-
 
 
 
