@@ -2,7 +2,7 @@ const bodyparser = require("body-parser");
 var { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const Post = require("../models/Post");
+
 module.exports = function(app) {
   const regValidation = [
     check("email")
@@ -93,7 +93,7 @@ module.exports = function(app) {
         req.session.user = user;
         req.session.isLoggedIn = true;
         return res.send({ message: "You are signed in" });
-        res.send(user);
+        //res.send(user);
       })
       .catch(function(error) {
         console.log(error);
@@ -108,47 +108,9 @@ module.exports = function(app) {
       res.send(false);
     }
   }
-  app.get("/api/isloggedin", isLoggedIn);
+  app.get("/api/isLogged", isLoggedIn);
 
-  //--------------------------------------
 
-  const postValidation = [
-    check("post")
-      .not()
-      .isEmpty()
-      .withMessage("Please write something.")
-  ];
-
-  function addPost(req, res) {
-    var errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.send({ errors: errors.mapped() });
-    }
-    var post = new Post(req.body);
-    if (req.session.user) {
-      post.user = req.session.user._id;
-      post
-        .save()
-        .then(post => {
-          res.json(post);
-        })
-        .catch(error => {
-          res.json(error);
-        });
-    } else {
-      return res.send({ error: "You are not logged in!" });
-    }
-  }
-  app.post("/api/addpost", postValidation, addPost);
-  //----------------------------------------------
-  app.post("/api/postupvote/:id", (req, res) => {
-    Post.findById(req.params.id).then(function(post) {
-      post.vote = post.vote + 1;
-      post.save().then(function(post) {
-        res.send(post);
-      });
-    });
-  });
 
   //------------------------------------------------------
   function showPosts(req, res) {
